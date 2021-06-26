@@ -1,0 +1,62 @@
+﻿@using System.Data.SqlClient
+@model IEnumerable<ConferenceManager.Models.Participant>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Participants</h3>
+
+<p>
+    @Html.ActionLink("Add a new participant record", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Search participants by full name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Full Name", "Index", new { SortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ParticipantId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ParticipantId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ParticipantId })
+            </td>
+        </tr>
+    }
+
+</table>

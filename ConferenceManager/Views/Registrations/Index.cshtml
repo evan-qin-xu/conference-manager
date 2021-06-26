@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ConferenceManager.Models.Registration>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Registrations</h3>
+
+<p>
+    @Html.ActionLink("Add a new registration record", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Search registration record: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Conference Title", "Index", new { sortOrder = ViewBag.TitleSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Participant Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegistrationTime)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conference.ConferenceTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Participant.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationTime)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.RegistrationId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.RegistrationId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.RegistrationId })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,42 @@
+﻿@model ConferenceManager.Models.Registration
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Registration</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Conference.ConferenceTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Conference.ConferenceTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Participant.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Participant.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegistrationTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegistrationTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RegistrationId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

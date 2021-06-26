@@ -1,0 +1,55 @@
+﻿@using System.Data.SqlClient
+@model IEnumerable<ConferenceManager.Models.Conference>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Conferences</h3>
+
+<p>
+    @Html.ActionLink("Add a new conference record", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Search conference by title: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Conference Title", "Index", new {sortOrder = ViewBag.NameSortParm})
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.ActionLink("Conference Time", "Index", new {SortOrder = ViewBag.DateSortParm})
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConferenceTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConferenceTime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ConferenceId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ConferenceId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ConferenceId })
+        </td>
+    </tr>
+}
+
+</table>
