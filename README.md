@@ -1,5 +1,5 @@
 ﻿
-This web application is developed for my school project. (Unit: Advanced object oriented programming.)
+This web application is developed for my school project. (Unit: Advanced Object Oriented Programming.)
 
 Background
 
